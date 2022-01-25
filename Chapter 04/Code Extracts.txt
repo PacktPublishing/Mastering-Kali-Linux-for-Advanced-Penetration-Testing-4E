@@ -1,3 +1,28 @@
 sudo nmap --script-updatedb
 sudo nmap -T4 -A -sV -v3 -d -oA Target output --script all --script-argsvulns.showall target.com
+sudo nikto -h target.com -Plugins “apacheusers(enumerate,dictionary:users.txt);report_xml” -output apacheusers.xml
+nikto.pl -host <hostaddress> -port <hostport> -useragentnikto -useproxy http://127.0.0.1:8080
+
+#Mobile security framework
+git clone https://github. com/MobSF/Mobile-Security-Framework-MobSF 
+cd Mobile-Security-Framework-MobSF/
+sudo apt install python3-venv
+sudo python3 -m pip install -r requirements.txt
+sudo ./setup.sh
+sudo ./run.sh
+
+#Nesuss
+sudo dpkg -i Nessus-8.14.0-debian6_amd64.deb
+
+#Specialized scans
+wpscan --url target.com
+
+#PYTM
+
+git clone https://github.com/izar/pytm
+cd pytm
+sudo pip3 install –r requirements.txt
+sudo python3 setup.py install
+sudo python3 tm.py -–list
+sudo python3 tm.py --dfd | dot -Tpng -o sample.png
 
