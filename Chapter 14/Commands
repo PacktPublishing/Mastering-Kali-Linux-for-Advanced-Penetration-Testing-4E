@@ -1,0 +1,26 @@
+https://www.usbjtag.com/filedownload/usbjtagnt-for-linux64.php
+https://www.usbjtag.com/filedownload/library-for-linux64.php
+tar xvf <nameofthefile.tar>
+export LD_LIBRARY_PATH=/home/kali/ Downloads/QtLib
+./USBJTAGNT 
+
+#routersploit
+use exploits/routers/dlink/dir_300_320_600_615_info_disclosure
+set port 80
+run
+
+use exploits/routers/dlink/dir_300_320_615_auth_bypass
+run
+
+picocom --baud 115200 --echo /dev/ttyACM0 
+CONFIG?
+CONFIG=ISO14443A_READER
+CONFIG= MF_CLASSIC_1K
+UID=CARD NUMBER
+
+git clone https://github.com/scateu/kalibrate-hackrf
+cd kalibrate-hackrf
+./bootstrap
+./configure
+./make && make instal
+
