@@ -1,1 +1,16 @@
+chntpw -i SAM
 
+cd /media/root/<ID>/Windows/System32/
+cp cmd.exe /home/kali/Desktop
+mv /home/kali/Desktop/cmd.exe /home/kali/Desktop/sethc.exe
+rm sethc.exe
+mv /home/kali/Desktop/sethc.exe .
+
+#raspberry Pi4
+
+sudo rm /etc/ssh/ssh_host_*
+sudo dpkg-reconfigure openssh-server
+sudo service ssh restart
+
+#bettercap
+sudo apt-get purge exim4-base exim4-config and then run sudo apt-get install sendmail
