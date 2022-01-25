@@ -1,1 +1,30 @@
+nmap --spoof-mac Cisco --data-length 24 -T paranoid --max-hostgroup 1 --max-parallelism 10 -Pn 10.10.10.100 -v -n -sS -sV -oA output -p T:1-1024 --randomize-hosts
+nmap -n –D Decoy1,decoy2,decoy3 targetIP
+nmap –D RND:10 targetIP
+nmap -sI [Zombie IP] [Target IP]
 
+sudo apt install tor
+sudo service tor start
+sudo service tor status
+firefox www.whatismyip.com
+proxychains firefox www.whatismyip.com
+sudo dmitry -winsepo out.txt www.domain.com
+sudo apt install thc-ipv6
+while read r; do nc -v -z $r 1-65535; done < iplist
+while read r; do nc -v -z target $r; done < ports
+nmap -sS -O target.com
+nc -vv www.target.com port number and then enter HEAD / HTTP/1.0
+fping -g IPrange
+nmap -sP IPrange
+for i in {1..254}; do ping -c 1 10.10.0.$i | grep ‘from’; done
+nmap -sP -PT 80 IPrange
+snmpwalk -c public ipaddress –v1
+nmap --script smb-enum-users.nse -p445 <host>
+smbclient -I TargetIP -L administrator -N -U “”
+enum4linux.pl [options] targetip
+
+#Azure
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+sudo apt-get install ca-certificates curl apt-transport-https lsb-release
+gnupg
+sudo apt-get install azure-cli
