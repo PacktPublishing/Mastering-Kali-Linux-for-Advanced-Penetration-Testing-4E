@@ -1,1 +1,3 @@
+sudo nmap --script-updatedb
+sudo nmap -T4 -A -sV -v3 -d -oA Target output --script all --script-argsvulns.showall target.com
 
