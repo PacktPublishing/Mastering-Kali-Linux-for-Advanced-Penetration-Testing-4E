@@ -1,1 +1,7 @@
-
+usufy -n Keyword
+mailfy -n Keyword
+theHarvester -d Domain.com -l 500 -b google
+inurl:/wp-content/uploads/ ext:txt “username” AND “password” | “pwd” | “pw”
+sudo apt install cupp
+cupp -i
+twofi -m 6 -u @PacktPub > filename
