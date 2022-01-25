@@ -1,1 +1,85 @@
-TBF
+sudo fdisk -l
+dd if=kali linux.iso of=/dev/nameofthedrive bs=512k
+
+sudo docker pull kalilinux/kali-rolling
+sudo docker run -t -i kalilinux/kali-linux-docker /bin/bash
+docker run --tty --interactive kalilinux/kali-rolling /bin/bash
+
+#Google Cloud Platform
+sudo systemctl start ssh
+sudo update-rc.d -f ssh enable 2 3 4 5
+sudo reboot
+
+qemu-img convert –f vdi –O raw nameofthevm.vdi disk.raw
+
+sudo passwd kali
+
+sudo nano /etc/network/interfaces
+iface eth0 inet dhcp
+
+# nano /etc/network/interfaces
+iface eth0 inet static
+address <your address>
+netmask <subnet mask>
+broadcast <broadcast mask>
+gateway <default gateway>
+# nano /etc/resolv.conf
+nameserver <your DNS ip> or <Google DNS (8.8.8.8)>
+
+
+update-rc.d networking defaults
+/etc/init.d/networking restart
+
+export ftp_proxy=ftp://username:password@proxyIP:port
+export http_proxy=http://username:password@proxyIP:port
+export https_proxy=https://username:password@proxyIP:port
+export socks_proxy="https://username:password@proxyIP:port"
+
+
+sudo dpkg-reconfigure openssh-server
+sudo systemctl list-unit-files --type=service
+sudo systemctl disable --now <nameoftheservice>
+udo systemctl list-unit-
+files --type=service --state=enabled --all
+
+#Lab network
+VBoxManage natnetwork add --netname InsideNetwork --network "10.10.10.0/24" –-enable --dhcp on
+netsh interface ip set address "ethernet" static 10.10.10.100 255.255.255.0 10.10.10.1
+
+net user normaluser Passw0rd12 /add /domain
+net user admin Passw0rd123 /add /domain
+net group "domain admins" admin /add /domain 
+
+net user exchangeadmin Passw0rd123 /add /domain
+net group "domain admins" exchangeadmin /add /domain
+net group "Schema admins" exchangeadmin /add /domain
+net group "Enterprise admins" exchangeadmin /add /domain
+
+netsh interface ip set address "ethernet" static 10.10.10.5 255.255.255.0 10.10.10.1
+netsh interface ip add dns "Ethernet" 10.10.10.100
+
+#Microsoft Exchange Server
+
+PS > Install-WindowsFeature NET-Framework-45-Features, RPC-over-HTTP-proxy, RSAT-Clustering, RSAT-Clustering-CmdInterface, RSAT- Clustering-Mgmt, RSAT-Clustering-PowerShell, Web-Mgmt-Console,WAS-Process-Model, Web-Asp-Net45, Web-Basic-Auth, Web-Client-Auth,Web-Digest-Auth, Web-Dir-Browsing, Web-Dyn-Compression, Web-Http-Errors, Web-Http-Logging, Web-Http-Redirect, Web-Http-Tracing, Web-ISAPI-Ext, Web-ISAPI-Filter, Web-Lgcy-Mgmt-Console, Web-Metabase,Web-Mgmt-Console, Web-Mgmt-Service, Web-Net-Ext45, Web-Request-Monitor, Web-Server, Web-Stat-Compression, Web-Static-Content, Web-Windows-Auth, Web-WMI, Windows-Identity-Foundation, RSAT-ADDS
+
+Vagrant plugin install vagrant-reload
+Vagrant plugin install vagrant-vbguest
+
+vagrant box add rapid7/metasploitable3-win2k8
+vagrant box add rapid7/metasploitable3-ub1404
+
+wget https://downloadsapachefriends.global.ssl.fastly. net/7.3.28/xampp-windows-x64-7.3.28-1-VC15-installer.exe?from_ af=true -OutFile XAMPP-Installer.exe
+
+#XAMPP MySQL
+
+mysql –u root
+use mysql
+SET PASSWORD FOR root@localhost = PASSWORD('mutillidae')
+Flush privileges
+
+#Cloudgoat
+
+sudo apt install docker.io
+sudo docker pull rhinosecuritylabs/cloudgoat
+sudo docker run -it rhinosecuritylabs/cloudgoat:latest
+
